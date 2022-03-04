@@ -1,8 +1,8 @@
 import pygame
 import sys
 
-WIDTH = 750
-HEIGHT = 500
+WIDTH = 1000
+HEIGHT = 1000
 screen = pygame.display.set_mode((WIDTH,HEIGHT))
 clock = pygame.time.Clock()
 
@@ -10,10 +10,14 @@ class animateEnemy(pygame.sprite.Sprite):
     def __init__(self, x, y):
         super().__init__()
         self.imgEne =[]
-        self.imgEne.append(pygame.image.load("projects\PyGame\pictures\ene1.png"))
-        self.imgEne.append(pygame.image.load("projects\PyGame\pictures\ene2.png"))
-        self.imgEne.append(pygame.image.load("projects\PyGame\pictures\ene3.png"))
-        self.imgEne.append(pygame.image.load("projects\PyGame\pictures\ene4.png"))
+        self.imgEne.append(pygame.image.load("projects\PyGame\pictures\character\monster1.png"))
+        self.imgEne.append(pygame.image.load("projects\PyGame\pictures\character\monster2.png"))
+        self.imgEne.append(pygame.image.load("projects\PyGame\pictures\character\monster3.png"))
+        self.imgEne.append(pygame.image.load("projects\PyGame\pictures\character\monster4.png"))
+        self.imgEne.append(pygame.image.load("projects\PyGame\pictures\character\monster5.png"))
+        self.imgEne.append(pygame.image.load("projects\PyGame\pictures\character\monster6.png"))
+        self.imgEne.append(pygame.image.load("projects\PyGame\pictures\character\monster7.png"))
+        self.imgEne.append(pygame.image.load("projects\PyGame\pictures\character\monster8.png"))
         self.current_imgEne = 0
         self.death_animation = False
         self.image = self.imgEne[self.current_imgEne]
@@ -47,7 +51,7 @@ while running:
         if event.type == pygame.KEYDOWN:
             timmie.death()
         
-    screen.fill((0,0,0))
+    screen.fill((200,200,200))
     animation_enemy.draw(screen) # draw charactor
     animation_enemy.update(0.2)
     pygame.display.update()
