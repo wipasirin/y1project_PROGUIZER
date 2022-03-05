@@ -19,7 +19,7 @@ monster1 = pygame.image.load("projects\PyGame\pictures\character\monster1.png")
 q1_monster = pygame.transform.scale(monster1, (int(monster1.get_width() * 0.55), int(monster1.get_height() * 0.55)))
 # =================================  MENU  =======================================
 # start/exit
-menu = pygame.image.load("projects/PyGame/pictures/background/menu.png")
+menu = pygame.image.load("projects\PyGame\pictures/background/bg3_pixel.png")
 bg_menu = pygame.transform.scale(menu, (WIDTH, HEIGHT))  # set a size of bg
 
 bt_start = pygame.image.load("projects/PyGame/pictures/buttons/start.png")
@@ -28,7 +28,8 @@ bt_exit = pygame.image.load("projects/PyGame/pictures/buttons/exit.png")
 game = pygame.image.load("projects/PyGame/pictures/background/game.png")
 bg_game = pygame.transform.scale(game, (WIDTH, HEIGHT))  # set a size of bg
 
-bg_ghost = pygame.image.load("projects\PyGame\pictures/background\ghost.png")
+ghost = pygame.image.load("projects/PyGame/pictures/background/special.png")
+bg_ghost = pygame.transform.scale(ghost, (WIDTH, HEIGHT))
 
 # ================================= QUIZ 1 =======================================
 quiz1 = pygame.image.load("projects/PyGame/pictures/background/quiz1.png")
@@ -64,13 +65,13 @@ q5_choice4 = pygame.image.load("projects/PyGame/pictures/buttons/quiz5_choice4.p
 # ================================ [ START ] =====================================
 pygame.init  # initialize pygame
 pygame.display.set_caption("PROGUIZER")  # set head
+pygame.display.set_icon(pygame.image.load("projects\PyGame\pictures\objects\icon.png"))
 
 clock = pygame.time.Clock()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))  # set a size of display
 buttonsMenuGroup = pygame.sprite.Group()
 buttonsGameGroup = pygame.sprite.Group()
 
-pygame.display.set_icon(pygame.image.load("projects\PyGame\pictures\character\monster1.png"))
 class ClassMenuButton(pygame.sprite.Sprite):  # create class button
     def __init__(self, x, y, image, width, hight, scale):
         # super().__init__()
