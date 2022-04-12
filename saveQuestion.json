@@ -1,427 +1,431 @@
 {
     "question": {
-        "allQuestion": {
-            "question1": "1.How can you convert a String type to an int type?",
-            "question2": "2. When you run the code what is the first thing that program looking for?",
-            "question3": "3.Which choice that is not DataType?",
-            "question4": "4.Which variable declaration is the most correct?",
-            "question5": "5.String number1 = \"15\";\n\tint number2 = 6;\n\t(number2 * 2) + number1 + number1\n\tWhat is the result?",
-            "question6": "6.Which of the inheritance class is correct?",
-            "question7": "7.Which of the following is a valid methods creation?",
-            "question8": "8.What interface represents a collection that allows duplicate elements. ",
-            "question9": "9.Which of these class can generate an array which can increase and decrease in size automatically?",
-            "question10": "10.The default capacity of a ArrayList is?",
-            "question11": "11.What is the output of the following code fragment?\n    int[] odd = {1, 3, 5, 7, 9, 11};\n    System.out.println( odd[1] + \"  \" + odd[6]);",
-            "question12": "12.Will this code compile?\n    public class Test{\n    public static void main(String[] args){\n        for(;;){}\n    }\n    }",
-            "question13": "13.Requirement is to read the user input line from the console using loop and write the input to a file line by line. If the user enters “END”, it should be written to the file and the program should exit. Which loop would you use?",
-            "question14": "14.Regardless of the boolean condition of the do while loop, there is always at least one iteration of the loop.",
-            "question15": "15. How you can create a constructor?",
-            "question16": "16.what is the function to inherit any class?",
-            "question17": "17.What is an abstract class?",
-            "question18": "18.What import class you can use for show dialog?",
-            "question19": "19.Show the code that creates a label displaying the following text",
-            "question20": "20.Which of the following is not OOPS concept in Java?"
-        },
         "questionChoice1": {
-            "choice1": {
-                "choice": "Convert.toInt(\"10\");",
-                "check": "False",
-                "web" : "https://www.freecodecamp.org/news/java-string-to-int-how-to-convert-a-string-to-an-integer/"
-            },
-            "choice2": {
-                "choice": "Int.parse(\"10\");",
-                "check": "False",
-                "web" : "https://www.freecodecamp.org/news/java-string-to-int-how-to-convert-a-string-to-an-integer/"
-
-            },
-            "choice3": {
-                "choice": "Integer.parseInt(\"10\");",
-                "check": "True"
-            },
-            "choice4": {
-                "choice": "Int32.Convert(\"10\");",
-                "check": "False",
-                "web" : "https://www.freecodecamp.org/news/java-string-to-int-how-to-convert-a-string-to-an-integer/"
+            "question1": "1.How can you convert a String type to an int type?",
+            "web": "https://www.freecodecamp.org/news/java-string-to-int-how-to-convert-a-string-to-an-integer/",
+            "allChoice": {
+                "choice1": {
+                    "choice": "Convert.toInt(\"10\");",
+                    "check": "False"
+                },
+                "choice2": {
+                    "choice": "Int.parse(\"10\");",
+                    "check": "False"
+                },
+                "choice3": {
+                    "choice": "Integer.parseInt(\"10\");",
+                    "check": "True"
+                },
+                "choice4": {
+                    "choice": "Int32.Convert(\"10\");",
+                    "check": "False"
+                }
             }
         },
         "questionChoice2": {
-            "choice1": {
-                "choice": "class",
-                "check": "False",
-                "web" : "https://www.guru99.com/first-java-program.html"
-            },
-            "choice2": {
-                "choice": "modifier",
-                "check": "False",
-                "web" : "https://www.guru99.com/first-java-program.html"
-            },
-            "choice3": {
-                "choice": "main method",
-                "check": "True"
-            },
-            "choice4": {
-                "choice": "the first method that program found",
-                "check": "False",
-                "web" : "https://www.guru99.com/first-java-program.html"
+            "question2": "2. When you run the code what is the first thing that program looking for?",
+            "web": "https://www.guru99.com/first-java-program.html",
+            "allChoice": {
+                "choice1": {
+                    "choice": "class",
+                    "check": "False"
+                },
+                "choice2": {
+                    "choice": "modifier",
+                    "check": "False"
+                },
+                "choice3": {
+                    "choice": "main method",
+                    "check": "True"
+                },
+                "choice4": {
+                    "choice": "the first method that program found",
+                    "check": "False"
+                }
             }
         },
         "questionChoice3": {
-            "choice1": {
-                "choice": "Number",
-                "check": "True"
-            },
-            "choice2": {
-                "choice": "Integer",
-                "check": "False",
-                "web" : "https://www.w3schools.com/java/java_data_types.asp"
-            },
-            "choice3": {
-                "choice": "Double",
-                "check": "False",
-                "web" : "https://www.w3schools.com/java/java_data_types.asp"
-            },
-            "choice4": {
-                "choice": "Float",
-                "check": "False",
-                "web" : "https://www.w3schools.com/java/java_data_types.asp"
+            "question3": "3.Which choice that is not DataType?",
+            "web": "https://www.w3schools.com/java/java_data_types.asp",
+            "allChoice": {
+                "choice1": {
+                    "choice": "Number",
+                    "check": "True"
+                },
+                "choice2": {
+                    "choice": "Integer",
+                    "check": "False"
+                },
+                "choice3": {
+                    "choice": "Double",
+                    "check": "False"
+                },
+                "choice4": {
+                    "choice": "Float",
+                    "check": "False"
+                }
             }
         },
         "questionChoice4": {
-            "choice1": {
-                "choice": "Double x = 15;",
-                "check": "False",
-                "web" : "https://www.w3schools.com/java/java_variables.asp"
-            },
-            "choice2": {
-                "choice": "int number = 6;",
-                "check": "True"
-            },
-            "choice3": {
-                "choice": "String Message = \"Hello World\"",
-                "check": "False",
-                "web" : "https://www.w3schools.com/java/java_variables.asp"
-            },
-            "choice4": {
-                "choice": "char c = “ABnormal”;",
-                "check": "False",
-                "web" : "https://www.w3schools.com/java/java_variables.asp"
+            "question4": "4.Which variable declaration is the most correct?",
+            "web": "https://www.w3schools.com/java/java_variables.asp",
+            "allChoice": {
+                "choice1": {
+                    "choice": "Double x = 15;",
+                    "check": "False"
+                },
+                "choice2": {
+                    "choice": "int number = 6;",
+                    "check": "True"
+                },
+                "choice3": {
+                    "choice": "String Message = \"Hello World\"",
+                    "check": "False"
+                },
+                "choice4": {
+                    "choice": "char c = “ABnormal”;",
+                    "check": "False"
+                }
             }
         },
         "questionChoice5": {
-            "choice1": {
-                "choice": "42",
-                "check": "False",
-                "web" : "https://www.geeksforgeeks.org/addition-and-concatenation-using-plus-operator-in-java/?fbclid=IwAR3Yc13mOSmCOBYV23Q0s3waW63d0tFJdE6PkmZj4iKLpr1bxLsGhfJhaGc"
-            },
-            "choice2": {
-                "choice": "661515",
-                "check": "False",
-                "web" : "https://www.geeksforgeeks.org/addition-and-concatenation-using-plus-operator-in-java/?fbclid=IwAR3Yc13mOSmCOBYV23Q0s3waW63d0tFJdE6PkmZj4iKLpr1bxLsGhfJhaGc"
-            },
-            "choice3": {
-                "choice": "121515",
-                "check": "True"
-            },
-            "choice4": {
-                "choice": "6630",
-                "check": "False",
-                "web" : "https://www.geeksforgeeks.org/addition-and-concatenation-using-plus-operator-in-java/?fbclid=IwAR3Yc13mOSmCOBYV23Q0s3waW63d0tFJdE6PkmZj4iKLpr1bxLsGhfJhaGc"
+            "question5": "5.String number1 = \"15\";\n\tint number2 = 6;\n\t(number2 * 2) + number1 + number1\n\tWhat is the result?",
+            "web": "https://www.geeksforgeeks.org/addition-and-concatenation-using-plus-operator-in-java/?fbclid=IwAR3Yc13mOSmCOBYV23Q0s3waW63d0tFJdE6PkmZj4iKLpr1bxLsGhfJhaGc",
+            "allChoice": {
+                "choice1": {
+                    "choice": "42",
+                    "check": "False"
+                },
+                "choice2": {
+                    "choice": "661515",
+                    "check": "False"
+                },
+                "choice3": {
+                    "choice": "121515",
+                    "check": "True"
+                },
+                "choice4": {
+                    "choice": "6630",
+                    "check": "False"
+                }
             }
         },
         "questionChoice6": {
-            "choice1": {
-                "choice": "class A : B",
-                "check": "False",
-                "web" : "https://www.javatpoint.com/inheritance-in-java"
-            },
-            "choice2": {
-                "choice": "class A < B",
-                "check": "False",
-                "web" : "https://www.javatpoint.com/inheritance-in-java"
-            },
-            "choice3": {
-                "choice": "class A extends B",
-                "check": "True"
-            },
-            "choice4": {
-                "choice": "class A <- B",
-                "check": "False",
-                "web" : "https://www.javatpoint.com/inheritance-in-java"
+            "question6": "6.Which of the inheritance class is correct?",
+            "web": "https://www.javatpoint.com/inheritance-in-java",
+            "allChoice": {
+                "choice1": {
+                    "choice": "class A : B",
+                    "check": "False"
+                },
+                "choice2": {
+                    "choice": "class A < B",
+                    "check": "False"
+                },
+                "choice3": {
+                    "choice": "class A extends B",
+                    "check": "True"
+                },
+                "choice4": {
+                    "choice": "class A <- B",
+                    "check": "False"
+                }
             }
         },
         "questionChoice7": {
-            "choice1": {
-                "choice": "get_Name()",
-                "check": "False",
-                "web" : "https://www.oracle.com/java/technologies/javase/"
-            },
-            "choice2": {
-                "choice": "Getname()",
-                "check": "False",
-                "web" : "https://www.oracle.com/java/technologies/javase/"
-            },
-            "choice3": {
-                "choice": "Name()",
-                "check": "False",
-                "web" : "https://www.oracle.com/java/technologies/javase/"
-            },
-            "choice4": {
-                "choice": "getName()",
-                "check": "True"
+            "question7": "7.Which of the following is a valid methods creation?",
+            "web": "https://www.oracle.com/java/technologies/javase/",
+            "allChoice": {
+                "choice1": {
+                    "choice": "get_Name()",
+                    "check": "False"
+                },
+                "choice2": {
+                    "choice": "Getname()",
+                    "check": "False"
+                },
+                "choice3": {
+                    "choice": "Name()",
+                    "check": "False"
+                },
+                "choice4": {
+                    "choice": "getName()",
+                    "check": "True"
+                }
             }
         },
         "questionChoice8": {
-            "choice1": {
-                "choice": "set",
-                "check": "Flase",
-                "web" : "https://moviecultists.com/why-set-doesnt-allow-duplicates"
-            },
-            "choice2": {
-                "choice": "list",
-                "check": "True"
-            },
-            "choice3": {
-                "choice": "all of above",
-                "check": "False",
-                "web" : "https://moviecultists.com/why-set-doesnt-allow-duplicates"
-            },
-            "choice4": {
-                "choice": "none of above",
-                "check": "False",
-                "web" : "https://moviecultists.com/why-set-doesnt-allow-duplicates"
+            "question8": "8.What interface represents a collection that allows duplicate elements.",
+            "web": "https://moviecultists.com/why-set-doesnt-allow-duplicates",
+            "allChoice": {
+                "choice1": {
+                    "choice": "set",
+                    "check": "Flase"
+                },
+                "choice2": {
+                    "choice": "list",
+                    "check": "True"
+                },
+                "choice3": {
+                    "choice": "all of above",
+                    "check": "False"
+                },
+                "choice4": {
+                    "choice": "none of above",
+                    "check": "False"
+                }
             }
         },
         "questionChoice9": {
-            "choice1": {
-                "choice": "DynamicList<>",
-                "check": "False",
-                "web" : "https://www.callicoder.com/java-arraylist/"
-            },
-            "choice2": {
-                "choice": "LinkedList<>",
-                "check": "False",
-                "web" : "https://www.callicoder.com/java-arraylist/"
-            },
-            "choice3": {
-                "choice": "ArrayList<>",
-                "check": "True"
-            },
-            "choice4": {
-                "choice": "MallocList",
-                "check": "False",
-                "web" : "https://www.callicoder.com/java-arraylist/"
+            "question9": "9.Which of these class can generate an array which can increase and decrease in size automatically?",
+            "web": "https://www.callicoder.com/java-arraylist/",
+            "allChoice": {
+                "choice1": {
+                    "choice": "DynamicList<>",
+                    "check": "False"
+                },
+                "choice2": {
+                    "choice": "LinkedList<>",
+                    "check": "False"
+                },
+                "choice3": {
+                    "choice": "ArrayList<>",
+                    "check": "True"
+                },
+                "choice4": {
+                    "choice": "MallocList",
+                    "check": "False"
+                }
             }
         },
         "questionChoice10": {
-            "choice1": {
-                "choice": "5",
-                "check": "False",
-                "web" : "https://www.geeksforgeeks.org/how-to-increase-the-capacity-size-of-arraylist/"
-            },
-            "choice2": {
-                "choice": "10",
-                "check": "True"
-            },
-            "choice3": {
-                "choice": "12",
-                "check": "False",
-                "web" : "https://www.geeksforgeeks.org/how-to-increase-the-capacity-size-of-arraylist/"
-            },
-            "choice4": {
-                "choice": "16",
-                "check": "False",
-                "web" : "https://www.geeksforgeeks.org/how-to-increase-the-capacity-size-of-arraylist/"
+            "question10": "10.The default capacity of a ArrayList is?",
+            "web": "https://www.geeksforgeeks.org/how-to-increase-the-capacity-size-of-arraylist/",
+            "allChoice": {
+                "choice1": {
+                    "choice": "5",
+                    "check": "False"
+                },
+                "choice2": {
+                    "choice": "10",
+                    "check": "True"
+                },
+                "choice3": {
+                    "choice": "12",
+                    "check": "False",
+                    "web": "https://www.geeksforgeeks.org/how-to-increase-the-capacity-size-of-arraylist/"
+                },
+                "choice4": {
+                    "choice": "16",
+                    "check": "False",
+                    "web": "https://www.geeksforgeeks.org/how-to-increase-the-capacity-size-of-arraylist/"
+                }
             }
         },
         "questionChoice11": {
-            "choice1": {
-                "choice": "12",
-                "check": "False",
-                "web" : "java.lang.ArrayIndexOutOfBoundsException: Index 6 out of bounds for length 6"
-            },
-            "choice2": {
-                "choice": "1 11",
-                "check": "False",
-                "web" : "java.lang.ArrayIndexOutOfBoundsException: Index 6 out of bounds for length 6"
-            },
-            "choice3": {
-                "choice": "3 11",
-                "check": "False",
-                "web" : "java.lang.ArrayIndexOutOfBoundsException: Index 6 out of bounds for length 6"
-            },
-            "choice4": {
-                "choice": "ArrayIndexOutOfBoundsException",
-                "check": "True"
+            "question11": "11.What is the output of the following code fragment?\n    int[] odd = {1, 3, 5, 7, 9, 11};\n    System.out.println(odd[1] + \"  \" + odd[6]);",
+            "web": "java.lang.ArrayIndexOutOfBoundsException: Index 6 out of bounds for length 6",
+            "allChoice": {
+                "choice1": {
+                    "choice": "12",
+                    "check": "False"
+                },
+                "choice2": {
+                    "choice": "1 11",
+                    "check": "False",
+                    "web": "java.lang.ArrayIndexOutOfBoundsException: Index 6 out of bounds for length 6"
+                },
+                "choice3": {
+                    "choice": "3 11",
+                    "check": "False",
+                    "web": "java.lang.ArrayIndexOutOfBoundsException: Index 6 out of bounds for length 6"
+                },
+                "choice4": {
+                    "choice": "ArrayIndexOutOfBoundsException",
+                    "check": "True"
+                }
             }
         },
         "questionChoice12": {
-            "choice1": {
-                "choice": "yes",
-                "check": "True"
-            },
-            "choice2": {
-                "choice": "no",
-                "check": "False",
-                "web" : "https://stackoverflow.com/questions/17969358/what-is-the-for-syntax?noredirect=1&lq=1"
+            "question12": "12.Will this code compile?\n    public class Test{\n    public static void main(String[] args){\n        for(;;){}\n    }\n    }",
+            "web": "https://stackoverflow.com/questions/17969358/what-is-the-for-syntax?noredirect=1&lq=1",
+            "allChoice": {
+                "choice1": {
+                    "choice": "yes",
+                    "check": "True"
+                },
+                "choice2": {
+                    "choice": "no",
+                    "check": "False"
+                }
             }
         },
         "questionChoice13": {
-            "choice1": {
-                "choice": "while do loop",
-                "check": "False",
-                "web" : "https://www.programiz.com/java-programming/do-while-loop"
-            },
-            "choice2": {
-                "choice": "do while loop",
-                "check": "True"
-            },
-            "choice3": {
-                "choice": "no loop(hard code)",
-                "check": "False",
-                "web" : "https://www.programiz.com/java-programming/do-while-loop"
-            },
-            "choice4": {
-                "choice": "none of above",
-                "check": "False",
-                "web" : "https://www.programiz.com/java-programming/do-while-loop"
+            "question13": "13.Requirement is to read the user input line from the console using loop and write the input to a file line by line. If the user enters \"END\", it should be written to the file and the program should exit. Which loop would you use?",
+            "web": "https://www.programiz.com/java-programming/do-while-loop",
+            "allChoice": {
+                "choice1": {
+                    "choice": "while do loop",
+                    "check": "False"
+                },
+                "choice2": {
+                    "choice": "do while loop",
+                    "check": "True"
+                },
+                "choice3": {
+                    "choice": "no loop(hard code)",
+                    "check": "False"
+                },
+                "choice4": {
+                    "choice": "none of above",
+                    "check": "False"
+                }
             }
         },
         "questionChoice14": {
-            "choice1": {
-                "choice": "TRUE",
-                "check": "True"
-            },
-            "choice2": {
-                "choice": "FALSE",
-                "check": "False",
-                "web" : "https://www.javatpoint.com/java-do-while-loop"
+            "question14": "14.Regardless of the boolean condition of the do while loop, there is always at least one iteration of the loop.",
+            "web": "https://www.javatpoint.com/java-do-while-loop",
+            "allChoice": {
+                "choice1": {
+                    "choice": "TRUE",
+                    "check": "True"
+                },
+                "choice2": {
+                    "choice": "FALSE",
+                    "check": "False"
+                }
             }
         },
         "questionChoice15": {
-            "choice1": {
-                "choice": "Public MyClass() {}",
-                "check": "True"
-            },
-            "choice2": {
-                "choice": "Public static void MyClass() {}",
-                "check": "False",
-                "web" : "https://www.w3schools.com/java/java_constructors.asp"
-            },
-            "choice3": {
-                "choice": "Public void MyClass() {}",
-                "check": "False",
-                "web" : "https://www.w3schools.com/java/java_constructors.asp"
-            },
-            "choice4": {
-                "choice": "None of above",
-                "check": "False",
-                "web" : "https://www.w3schools.com/java/java_constructors.asp"
+            "question15": "15. How you can create a constructor?",
+            "web": "https://www.w3schools.com/java/java_constructors.asp",
+            "allChoice": {
+                "choice1": {
+                    "choice": "Public MyClass() {}",
+                    "check": "True"
+                },
+                "choice2": {
+                    "choice": "Public static void MyClass() {}",
+                    "check": "False"
+                },
+                "choice3": {
+                    "choice": "Public void MyClass() {}",
+                    "check": "False"
+                },
+                "choice4": {
+                    "choice": "None of above",
+                    "check": "False"
+                }
             }
         },
         "questionChoice16": {
-            "choice1": {
-                "choice": "this",
-                "check": "False",
-                "web" : " https://www.w3schools.com/java/java_inheritance.asp"
-            },
-            "choice2": {
-                "choice": "super",
-                "check": "False",
-                "web" : " https://www.w3schools.com/java/java_inheritance.asp"
-            },
-            "choice3": {
-                "choice": "extends",
-                "check": "True"
-            },
-            "choice4": {
-                "choice": "implement",
-                "check": "False",
-                "web" : " https://www.w3schools.com/java/java_inheritance.asp"
+            "question16": "16.what is the function to inherit any class?",
+            "web": " https://www.w3schools.com/java/java_inheritance.asp",
+            "allChoice": {
+                "choice1": {
+                    "choice": "this",
+                    "check": "False"
+                },
+                "choice2": {
+                    "choice": "super",
+                    "check": "False"
+                },
+                "choice3": {
+                    "choice": "extends",
+                    "check": "True"
+                },
+                "choice4": {
+                    "choice": "implement",
+                    "check": "False"
+                }
             }
         },
         "questionChoice17": {
-            "choice1": {
-                "choice": "The class with abstract method",
-                "check": "True"
-            },
-            "choice2": {
-                "choice": "The method with abstract class",
-                "check": "False",
-                "web" : "https://www.w3schools.com/java/java_abstract.asp"
-            },
-            "choice3": {
-                "choice": "The abstract object",
-                "check": "False",
-                "web" : "https://www.w3schools.com/java/java_abstract.asp"
-            },
-            "choice4": {
-                "choice": "None of above",
-                "check": "False",
-                "web" : "https://www.w3schools.com/java/java_abstract.asp"
-
+            "question17": "17.What is an abstract class?",
+            "web": "https://www.w3schools.com/java/java_abstract.asp",
+            "allChoice": {
+                "choice1": {
+                    "choice": "The class with abstract method",
+                    "check": "True"
+                },
+                "choice2": {
+                    "choice": "The method with abstract class",
+                    "check": "False"
+                },
+                "choice3": {
+                    "choice": "The abstract object",
+                    "check": "False"
+                },
+                "choice4": {
+                    "choice": "None of above",
+                    "check": "False"
+                }
             }
         },
         "questionChoice18": {
-            "choice1": {
-                "choice": "JPanel",
-                "check": "False",
-                "web" : "https://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html"
-            },
-            "choice2": {
-                "choice": "JLabel",
-                "check": "False",
-                "web" : "https://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html"
-            },
-            "choice3": {
-                "choice": "JOptionPane",
-                "check": "True"
-            },
-            "choice4": {
-                "choice": "JTextField",
-                "check": "False",
-                "web" : "https://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html"
+            "question18": "18.What import class you can use for show dialog?",
+            "web": "https://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html",
+            "allChoice": {
+                "choice1": {
+                    "choice": "JPanel",
+                    "check": "False"
+                },
+                "choice2": {
+                    "choice": "JLabel",
+                    "check": "False"
+                },
+                "choice3": {
+                    "choice": "JOptionPane",
+                    "check": "True"
+                },
+                "choice4": {
+                    "choice": "JTextField",
+                    "check": "False"
+                }
             }
         },
         "questionChoice19": {
-            "choice1": {
-                "choice": "label = new JLabel(\"Hello world\")",
-                "check": "True"
-            },
-            "choice2": {
-                "choice": "label = JLabel(\"Hello world\")",
-                "check": "False",
-                "web" : "https://docs.oracle.com/javase/7/docs/api/javax/swing/JLabel.html"
-            },
-            "choice3": {
-                "choice": "label = JPanel(\"Hello world\")",
-                "check": "False",
-                "web" : "https://docs.oracle.com/javase/7/docs/api/javax/swing/JLabel.html"
-            },
-            "choice4": {
-                "choice": "JOptionPane(this, \"Hello world\")",
-                "check": "False",
-                "web" : "https://docs.oracle.com/javase/7/docs/api/javax/swing/JLabel.html"
+            "question19": "19.Show the code that creates a label displaying the following text",
+            "web": "https://docs.oracle.com/javase/7/docs/api/javax/swing/JLabel.html",
+            "allChoice": {
+                "choice1": {
+                    "choice": "label = new JLabel(\"Hello world\")",
+                    "check": "True"
+                },
+                "choice2": {
+                    "choice": "label = JLabel(\"Hello world\")",
+                    "check": "False"
+                },
+                "choice3": {
+                    "choice": "label = JPanel(\"Hello world\")",
+                    "check": "False"
+                },
+                "choice4": {
+                    "choice": "JOptionPane(this, \"Hello world\")",
+                    "check": "False"
+                }
             }
         },
         "questionChoice20": {
-            "choice1": {
-                "choice": "Polymorphism",
-                "check": "False",
-                "web" : "https://www.w3schools.blog/java-oops-online-quiz-test"
-            },
-            "choice2": {
-                "choice": "Encapsulation",
-                "check": "False",
-                "web" : "https://www.w3schools.blog/java-oops-online-quiz-test"
-            },
-            "choice3": {
-                "choice": "inheritance",
-                "check": "False",
-                "web" : "https://www.w3schools.blog/java-oops-online-quiz-test"
-            },
-            "choice4": {
-                "choice": "Compilation",
-                "check": "True"
+            "question20": "20.Which of the following is not OOPS concept in Java?",
+            "web": "https://www.w3schools.blog/java-oops-online-quiz-test",
+            "allChoice": {
+                "choice1": {
+                    "choice": "Polymorphism",
+                    "check": "False"
+                },
+                "choice2": {
+                    "choice": "Encapsulation",
+                    "check": "False"
+                },
+                "choice3": {
+                    "choice": "inheritance",
+                    "check": "False"
+                },
+                "choice4": {
+                    "choice": "Compilation",
+                    "check": "True"
+                }
             }
         }
     }
