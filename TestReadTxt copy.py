@@ -1,4 +1,5 @@
 #from turtle import update
+from operator import and_
 from tkinter.font import BOLD
 from turtle import width
 import pygame
@@ -12,13 +13,17 @@ import json
 WIDTH = 1250
 HEIGHT = 750
 nowHt = 3
-next = 0 # now where am I 
-
+nextQuestion = 0 # now where am I 
+a_data = {}
+choiceButList = []
+checkChoiceButList = []
+score = 0
+getdamage = False
 
 pygame.init()  # initialize pygame
 pygame.font.init()
 # data = pandas.read_excel("projects\PyGame\pictures\objects\QuestionText.xlsx")
-file = open("projects\PyGame\pictures\quiz.json", encoding="utf8")
+file = open("projects\PyGame\pictures\saveQuestion.json")
 data = json.load(file)
 # ===============================  CHARACTER  ====================================
 # timmy
@@ -26,12 +31,14 @@ timmy = pygame.image.load("projects\PyGame\pictures\character\char_common.png")
 ani_timmy= pygame.transform.scale(timmy, (int(timmy.get_width() * 0.25), int(timmy.get_height() * 0.25)))
 timmycom = pygame.image.load("projects\PyGame\pictures\character\char_fight.png")
 ani_timmycom = pygame.transform.scale(timmycom, (int(timmycom.get_width() * 0.25), int(timmycom.get_height() * 0.25)))
+timmyhurt = pygame.image.load("projects\PyGame\pictures\character\char_damaged.png")
+ani_timmyhurt = pygame.transform.scale(timmyhurt, (int(timmyhurt.get_width() * 0.25), int(timmyhurt.get_height() * 0.25)))
 #monster
 monster1 = pygame.image.load("projects\PyGame\pictures\character\monster1.png")
 q1_monster = pygame.transform.scale(monster1, (int(monster1.get_width() * 0.55), int(monster1.get_height() * 0.55)))
 # =================================  MENU  =======================================
 # start/exit
-menu = pygame.image.load("projects\PyGame\pictures/background/bg3_pixel.png")
+menu = pygame.image.load("projects\PyGame\pictures/background/bgHome.jpg")
 bg_menu = pygame.transform.scale(menu, (WIDTH, HEIGHT))  # set a size of bg
 
 bt_start = pygame.image.load("projects/PyGame/pictures/buttons/start.png")
@@ -49,8 +56,10 @@ bg_quiz1 = pygame.transform.scale(quiz1, (WIDTH, HEIGHT))
 choicebg = pygame.image.load("projects\PyGame\pictures\choiceEasy.png")
 wchoicebg = choicebg.get_width()/6
 hchoice = choicebg.get_height()/6
-font = pygame.font.SysFont('cambriacambriamath', 25, BOLD)
-WHITE = (92, 115, 89)
+fontChoice = pygame.font.SysFont('cambriacambriamath', 25, BOLD)
+fontQuiz = pygame.font.SysFont('cambriacambriamath', 30, BOLD)
+WHITE = (200, 200, 200)
+GREEN = (166, 26, 0)
 # q1_choice1 = pygame.image.load("projects/PyGame/pictures/buttons/quiz1_choice1.png")
 # q1_choice2 = pygame.image.load("projects/PyGame/pictures/buttons/quiz1_choice2.png")
 # q1_choice3 = pygame.image.load("projects/PyGame/pictures/buttons/quiz1_choice3.png")
@@ -137,8 +146,8 @@ class Text(pygame.sprite.Sprite):
 
     def drawGameBt(self, txt_choice, txt_quiz, pt_x, pt_y):
         # bt = pygame.transform.scale(choicebg, [self.rect.x, self.rect.x])
-        choicetxt = font.render(txt_choice, 1, WHITE)
-        choicequiz = font.render(txt_quiz, 1, WHITE)
+        choicetxt = fontChoice.render(txt_choice, 1, GREEN)
+        choicequiz = fontQuiz.render(txt_quiz, 1, WHITE)
 
         screen.blit(self.image, [pt_x, pt_y])
         screen.blit(choicequiz, [WIDTH/2, 50])
@@ -176,12 +185,23 @@ class ClassHeart(pygame.sprite.Sprite):
 class ClassAnimeTimmie(pygame.sprite.Sprite):
     def __init__(self, x, y):
         super().__init__()
-        self.imgChar =[]
-        self.imgChar.append(ani_timmy)
-        self.imgChar.append(ani_timmycom)
-        self.current_imgChar = 0
+        self.imgCharCompute =[]
+        self.imgCharHurt =[]
+        self.imgCharCompute.append(ani_timmy)
+        self.imgCharCompute.append(ani_timmycom)
+
+        self.imgCharHurt.append(ani_timmy)
+        self.imgCharHurt.append(ani_timmyhurt)
+
+        self.current_imgCharCompute = 0
+        self.current_imgCharHurt = 0
+
         self.compute_animation = False
-        self.image = self.imgChar[self.current_imgChar]
+        self.hurt_animation = False
+
+        self.image = self.imgCharCompute[self.current_imgCharCompute]
+        self.image = self.imgCharHurt[self.current_imgCharHurt]
+
         self.checkAni = False
         self.rect = self.image.get_rect()
         self.rect.topleft = [x,y]
@@ -189,16 +209,26 @@ class ClassAnimeTimmie(pygame.sprite.Sprite):
     def compute(self):
         self.compute_animation = True
 
+    def hurt(self):
+        self.hurt_animation = True
+
     def update(self, speed): # speed ต้องบวกได้จำนวนเต็ม 0++
         if self.compute_animation == True:
-            self.current_imgChar += speed
-            if int(self.current_imgChar) >= len(self.imgChar):
-                self.current_imgChar = 1
+            self.current_imgCharCompute += speed
+            if int(self.current_imgCharCompute) >= len(self.imgCharCompute):
+                self.current_imgCharCompute = 1
                 # self.compute_animation = False
                 self.checkAni = True
                 print("enough")
+            self.image = self.imgCharCompute[int(self.current_imgCharCompute)]
+        if self.hurt_animation == True:
+            self.current_imgCharHurt += speed
+            if int(self.current_imgCharHurt) >= len(self.imgCharHurt):
+                self.current_imgCharHurt = 1
+                # self.compute_animation = False
+                self.checkAni = True
+            self.image = self.imgCharHurt[int(self.current_imgCharHurt)]
         
-        self.image = self.imgChar[int(self.current_imgChar)]
 
 class ClassMonster(pygame.sprite.Sprite):
     def __init__(self, x, y):
@@ -239,32 +269,33 @@ class quizTimmie(pygame.sprite.Sprite):
 def init_monster():
     global monster_group, monQ1
     monster_group = pygame.sprite.Group()
-    monQ1 = ClassMonster(550, 175)
+    monQ1 = ClassMonster(690, 223)
     monster_group.add(monQ1)
 
 def init_timmie():
     global timmie_group, timmieAni
     timmie_group = pygame.sprite.Group()
-    timmieAni = ClassAnimeTimmie(130, 225)
+    timmieAni = ClassAnimeTimmie(270, 270)
     timmie_group.add(timmieAni)
             
 def threeHeart():    
-    heart1 = ClassHeart(100, 75, 0.5)
-    heart2 = ClassHeart(150, 75, 0.5)
-    heart3 = ClassHeart(200, 75, 0.5)
+    heart1 = ClassHeart(50, 45, 0.5)
+    heart2 = ClassHeart(100, 45, 0.5)
+    heart3 = ClassHeart(150, 45, 0.5)
     screen.blit(heart1.heart0, heart1.rectht)
     screen.blit(heart2.heart0, heart2.rectht)
     screen.blit(heart3.heart0, heart3.rectht)
 
 
-def twoHeart():    
-    heart1 = ClassHeart(100, 75, 0.5)
-    heart2 = ClassHeart(150, 75, 0.5)
+def twoHeart():
+        
+    heart1 = ClassHeart(50, 45, 0.5)
+    heart2 = ClassHeart(100, 45, 0.5)
     screen.blit(heart1.heart0, heart1.rectht)
     screen.blit(heart2.heart0, heart2.rectht)
 
 def oneHeart():    
-    heart1 = ClassHeart(100, 75, 0.5)
+    heart1 = ClassHeart(50, 45, 0.5)
     screen.blit(heart1.heart0, heart1.rectht)
 
 def checkHeart():
@@ -291,22 +322,33 @@ def func_menu():
 #     print(data['question'][i].get('question'))
 # Closing file
 
+# nextQuestion = 1
 
-a_data = {}
-choiceList = []
 def quiz():
     pt_x = 50
     pt_y = 600
+    checkQuestion = 1
     # position = (100, 580)
-    for i in data['question']:
-        for y in data['question'][i]['qchoice'] :
-            choice = Text(pt_x, pt_y, choicebg, choicebg.get_width(), choicebg.get_height(), 1.2)
-            # read line ****
-            txt_choice = data['question'][i]['qchoice'][y].get('choice')
-            txt_quiz = data['question'][i].get('question')
-            choice.drawGameBt(txt_choice, txt_quiz, pt_x, pt_y)
-            choiceList.append(choice)
-            pt_x += 300
+    for i in data['allThing']:
+        # print(i)
+        if (nextQuestion == checkQuestion) : 
+            for y in data['allThing'][i]['allChoice'] :
+                # print(y)
+                choiceButton = Text(pt_x, pt_y, choicebg, choicebg.get_width(), choicebg.get_height(), 1.2)
+                # read line ****
+                txt_quiz = data['allThing'][i].get('question')
+                txt_choice = data['allThing'][i]['allChoice'][y].get('choice')
+                txt_check = data['allThing'][i]['allChoice'][y].get('check')
+                choiceButton.drawGameBt(txt_choice, txt_quiz, pt_x, pt_y)
+                choiceButList.append(choiceButton)
+                checkChoiceButList.append(txt_check)
+                pt_x += 300
+            checkQuestion += 1
+            # break
+        else :
+            checkQuestion += 1 
+            # break
+        
         # a_data.setdefault(i)
     
     file.close()
@@ -325,11 +367,10 @@ def quiz():
 #         # a_data.setdefault(i)
 
 
-def func_quiz1():
-    global choice1
+def func_quiz():
     # , choice2, choice3, choice4
     screen.blit(bg_quiz1, (0, 0))
-    timmie = quizTimmie(130, 225)
+    timmie = quizTimmie(270, 270)
     timmie.draw()
     monster_group.draw(screen)
     #font
@@ -404,6 +445,7 @@ def func_quiz1():
 #     checkHeart()
 
 def main_animation():
+    global getdamage
     running = True    
     init_timmie()
     init_monster()      
@@ -412,19 +454,26 @@ def main_animation():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-            else: 
-                timmieAni.compute()
+            else:
+                if (getdamage):
+                    timmieAni.hurt() 
+                    getdamage = False
+                else:
+                    timmieAni.compute()
             
-        screen.blit(bg_game, (0,0))
+        screen.blit(bg_quiz1, (0,0))
         timmie_group.draw(screen) # draw charactor
         monster_group.draw(screen)
         timmie_group.update(0.2)
         print(timmieAni.checkAni)
         if(timmieAni.checkAni):
-            if (next == 1):
-                print("now is",next)
-                # print("END")
-                main_quiz1()
+            if (nextQuestion == (len(data['allThing'])+1)):
+                print("Score is",score)
+                print("Omedetou !!!! > () < !!!!")
+                pygame.quit()
+                sys.exit()
+            else:
+                main_quiz()
             # elif (next == 2):
             #     print("now is",next)
             #     main_quiz2()
@@ -437,22 +486,21 @@ def main_animation():
             # elif (next == 5):
             #     print("now is",next)
             #     main_quiz5()
-            else:
-                print("now is",next)
-                print("Baka yarouu!")
-                pygame.quit()
-                sys.exit()
+            # else:
+            #     print("now is",next)
+            #     print("Baka yarouu!")
+            #     pygame.quit()
+            #     sys.exit()
             
         pygame.display.update()
         clock.tick(15)
 
 # =================================  MENU  =======================================
 def main_menu():
-    global next, nowHt
+    global nextQuestion, nowHt
     running = True
-    
+    func_menu()
     while running:
-        func_menu()
         for event in pygame.event.get():  # check circumstance in the game
             if (event.type == pygame.QUIT):  # when press botton an exit
                 pygame.quit()
@@ -462,8 +510,8 @@ def main_menu():
                     button_start.update()
                     button_exit.update()
                     print("Start")
-                    print("now is",next)
-                    next = 1
+                    print("now is",nextQuestion)
+                    nextQuestion += 1
                     nowHt = 3
                     main_animation() # animetion
                     # checkHeart()
@@ -475,36 +523,106 @@ def main_menu():
 
         pygame.display.update()
 
+def checkChoice():
+    global nextQuestion, nowHt, score, getdamage
+    print(choiceButList)
+    print(checkChoiceButList)
+    # for i in range(0, len(choiceButList)):
+    if (choiceButList[0].checkClickgm()):
+        if (checkChoiceButList[0] == "True"):
+            print("clicked TRUE")
+            nextQuestion += 1
+            score += 1
+        else:
+            print("clicked FALSE")
+            nowHt -= 1
+            nextQuestion += 1 
+            getdamage = True
+    elif (choiceButList[1].checkClickgm()):
+        if (checkChoiceButList[1] == "True"):
+            print("clicked TRUE")
+            nextQuestion += 1
+            score += 1
+        else:
+            print("clicked FALSE")
+            nowHt -= 1
+            nextQuestion += 1
+            getdamage = True  
+    elif (choiceButList[2].checkClickgm()):
+        if (checkChoiceButList[2] == "True"):
+            print("clicked TRUE")
+            nextQuestion += 1
+            score += 1
+        else:
+            print("clicked FALSE")
+            nowHt -= 1
+            nextQuestion += 1 
+            getdamage = True 
+    elif (choiceButList[3].checkClickgm()):
+        if (checkChoiceButList[3] == "True"):
+            print("clicked TRUE")
+            nextQuestion += 1
+            score += 1
+        else:
+            print("clicked FALSE")
+            nowHt -= 1
+            nextQuestion += 1
+            getdamage = True  
+   
+    # else:
+    #     if (choiceButList[0].checkClickgm() or choiceButList[1].checkClickgm() or choiceButList[2].checkClickgm() or choiceButList[3].checkClickgm()):
+    #     print("clicked FALSE")
+    #     nowHt -= 1
+    #     nextQuestion += 1
+    for i in range(0,len(choiceButList)):
+        choiceButList[i].updateGameBt()
+    
+    # choiceButList[1].updateGameBt()
+    # choiceButList[2].updateGameBt()
+    # choiceButList[3].updateGameBt()
+    choiceButList.clear()
+    checkChoiceButList.clear()
+    # choiceButList.remove
+    print(checkChoiceButList)
+    main_animation()
+    # print(nextQuestion)
+    
+    # else :
+    #     print("clicked FALSE")
+    #     pygame.quit()
+    #     sys.exit()
+
+
+
 # ================================= QUIZ 1 =======================================
-def main_quiz1():
+def main_quiz():
     global next, nowHt
     running = True
-
+    func_quiz()
     while running:
-        func_quiz1()
-        
         for event in pygame.event.get():  # check circumstance in the game
             if (event.type == pygame.QUIT):  # when press botton an exit
                 pygame.quit()
                 sys.exit()
             if (event.type == pygame.MOUSEBUTTONDOWN):
-                print("Click")
-                if(choiceList[0].checkClickgm()):
-                    # print("false")
-                    print("clicked choice1")
-                    pygame.quit()
-                    sys.exit()
-                    # next = 1
-                    # nowHt -= 1
-                    # main_animation()
-                elif (choiceList[1].checkClickgm()):
-                #     choice1.updateGameBt()
-                #     choice2.updateGameBt()
-                #     choice3.updateGameBt()
-                #     choice4.updateGameBt()
-                        print("clicked choice2")
-                        pygame.quit()
-                        sys.exit()
+                print("Click --> check")
+                checkChoice()
+                # if(choiceList[0].checkClickgm()):
+                #     # print("false")
+                #     print("clicked choice1")
+                #     pygame.quit()
+                #     sys.exit()
+                #     # next = 1
+                #     # nowHt -= 1
+                #     # main_animation()
+                # elif (choiceList[1].checkClickgm()):
+                # #     choice1.updateGameBt()
+                # #     choice2.updateGameBt()
+                # #     choice3.updateGameBt()
+                # #     choice4.updateGameBt()
+                #         print("clicked choice2")
+                #         pygame.quit()
+                #         sys.exit()
                 #     next = 2
                 #     main_animation()
                 #     print("false")
@@ -518,8 +636,8 @@ def main_quiz1():
                 #     next = 1
                 #     nowHt -= 1
                 #     main_animation()
-                # else:
-                #     continue
+            else:
+                continue
     
         pygame.display.update()
 

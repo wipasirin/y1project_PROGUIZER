@@ -283,7 +283,7 @@
             }
         },
         "questionChoice14": {
-            "question14": "14.Regardless of the boolean condition of the do while loop, there is always at least one iteration of the loop.",
+            "question": "14.Regardless of the boolean condition of the do while loop, there is always at least one iteration of the loop.",
             "web": "https://www.javatpoint.com/java-do-while-loop",
             "allChoice": {
                 "choice1": {
