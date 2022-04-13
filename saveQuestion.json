@@ -1,7 +1,7 @@
 {
-    "question": {
+    "allThing": {
         "questionChoice1": {
-            "question1": "1.How can you convert a String type to an int type?",
+            "question": "1.How can you convert a String type to an int type?",
             "web": "https://www.freecodecamp.org/news/java-string-to-int-how-to-convert-a-string-to-an-integer/",
             "allChoice": {
                 "choice1": {
@@ -23,7 +23,7 @@
             }
         },
         "questionChoice2": {
-            "question2": "2. When you run the code what is the first thing that program looking for?",
+            "question": "2. When you run the code what is the first thing that program looking for?",
             "web": "https://www.guru99.com/first-java-program.html",
             "allChoice": {
                 "choice1": {
@@ -45,7 +45,7 @@
             }
         },
         "questionChoice3": {
-            "question3": "3.Which choice that is not DataType?",
+            "question": "3.Which choice that is not DataType?",
             "web": "https://www.w3schools.com/java/java_data_types.asp",
             "allChoice": {
                 "choice1": {
@@ -67,7 +67,7 @@
             }
         },
         "questionChoice4": {
-            "question4": "4.Which variable declaration is the most correct?",
+            "question": "4.Which variable declaration is the most correct?",
             "web": "https://www.w3schools.com/java/java_variables.asp",
             "allChoice": {
                 "choice1": {
@@ -83,13 +83,13 @@
                     "check": "False"
                 },
                 "choice4": {
-                    "choice": "char c = “ABnormal”;",
+                    "choice": "char c = \"ABnormal\";",
                     "check": "False"
                 }
             }
         },
         "questionChoice5": {
-            "question5": "5.String number1 = \"15\";\n\tint number2 = 6;\n\t(number2 * 2) + number1 + number1\n\tWhat is the result?",
+            "question": "5.String number1 = \"15\";\nint number2 = 6;\n(number2 * 2) + number1 + number1\nWhat is the result?",
             "web": "https://www.geeksforgeeks.org/addition-and-concatenation-using-plus-operator-in-java/?fbclid=IwAR3Yc13mOSmCOBYV23Q0s3waW63d0tFJdE6PkmZj4iKLpr1bxLsGhfJhaGc",
             "allChoice": {
                 "choice1": {
@@ -111,7 +111,7 @@
             }
         },
         "questionChoice6": {
-            "question6": "6.Which of the inheritance class is correct?",
+            "question": "6.Which of the inheritance class is correct?",
             "web": "https://www.javatpoint.com/inheritance-in-java",
             "allChoice": {
                 "choice1": {
@@ -133,7 +133,7 @@
             }
         },
         "questionChoice7": {
-            "question7": "7.Which of the following is a valid methods creation?",
+            "question": "7.Which of the following is a valid methods creation?",
             "web": "https://www.oracle.com/java/technologies/javase/",
             "allChoice": {
                 "choice1": {
@@ -155,7 +155,7 @@
             }
         },
         "questionChoice8": {
-            "question8": "8.What interface represents a collection that allows duplicate elements.",
+            "question": "8.What interface represents a collection that allows duplicate elements.",
             "web": "https://moviecultists.com/why-set-doesnt-allow-duplicates",
             "allChoice": {
                 "choice1": {
@@ -177,7 +177,7 @@
             }
         },
         "questionChoice9": {
-            "question9": "9.Which of these class can generate an array which can increase and decrease in size automatically?",
+            "question": "9.Which of these class can generate an array which can increase and decrease in size automatically?",
             "web": "https://www.callicoder.com/java-arraylist/",
             "allChoice": {
                 "choice1": {
@@ -199,7 +199,7 @@
             }
         },
         "questionChoice10": {
-            "question10": "10.The default capacity of a ArrayList is?",
+            "question": "10.The default capacity of a ArrayList is?",
             "web": "https://www.geeksforgeeks.org/how-to-increase-the-capacity-size-of-arraylist/",
             "allChoice": {
                 "choice1": {
@@ -223,7 +223,7 @@
             }
         },
         "questionChoice11": {
-            "question11": "11.What is the output of the following code fragment?\n    int[] odd = {1, 3, 5, 7, 9, 11};\n    System.out.println(odd[1] + \"  \" + odd[6]);",
+            "question": "11.What is the output of the following code fragment?\n    int[] odd = {1, 3, 5, 7, 9, 11};\n    System.out.println(odd[1] + \"  \" + odd[6]);",
             "web": "java.lang.ArrayIndexOutOfBoundsException: Index 6 out of bounds for length 6",
             "allChoice": {
                 "choice1": {
@@ -247,7 +247,7 @@
             }
         },
         "questionChoice12": {
-            "question12": "12.Will this code compile?\n    public class Test{\n    public static void main(String[] args){\n        for(;;){}\n    }\n    }",
+            "question": "12.Will this code compile?\n    public class Test{\n    public static void main(String[] args){\n        for(;;){}\n    }\n    }",
             "web": "https://stackoverflow.com/questions/17969358/what-is-the-for-syntax?noredirect=1&lq=1",
             "allChoice": {
                 "choice1": {
@@ -261,7 +261,7 @@
             }
         },
         "questionChoice13": {
-            "question13": "13.Requirement is to read the user input line from the console using loop and write the input to a file line by line. If the user enters \"END\", it should be written to the file and the program should exit. Which loop would you use?",
+            "question": "13.Requirement is to read the user input line from the console using loop and write the input to a file line by line. If the user enters \"END\", it should be written to the file and the program should exit. Which loop would you use?",
             "web": "https://www.programiz.com/java-programming/do-while-loop",
             "allChoice": {
                 "choice1": {
@@ -297,7 +297,7 @@
             }
         },
         "questionChoice15": {
-            "question15": "15. How you can create a constructor?",
+            "question": "15. How you can create a constructor?",
             "web": "https://www.w3schools.com/java/java_constructors.asp",
             "allChoice": {
                 "choice1": {
@@ -319,7 +319,7 @@
             }
         },
         "questionChoice16": {
-            "question16": "16.what is the function to inherit any class?",
+            "question": "16.what is the function to inherit any class?",
             "web": " https://www.w3schools.com/java/java_inheritance.asp",
             "allChoice": {
                 "choice1": {
@@ -341,7 +341,7 @@
             }
         },
         "questionChoice17": {
-            "question17": "17.What is an abstract class?",
+            "question": "17.What is an abstract class?",
             "web": "https://www.w3schools.com/java/java_abstract.asp",
             "allChoice": {
                 "choice1": {
@@ -363,7 +363,7 @@
             }
         },
         "questionChoice18": {
-            "question18": "18.What import class you can use for show dialog?",
+            "question": "18.What import class you can use for show dialog?",
             "web": "https://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html",
             "allChoice": {
                 "choice1": {
@@ -385,7 +385,7 @@
             }
         },
         "questionChoice19": {
-            "question19": "19.Show the code that creates a label displaying the following text",
+            "question": "19.Show the code that creates a label displaying the following text",
             "web": "https://docs.oracle.com/javase/7/docs/api/javax/swing/JLabel.html",
             "allChoice": {
                 "choice1": {
@@ -407,7 +407,7 @@
             }
         },
         "questionChoice20": {
-            "question20": "20.Which of the following is not OOPS concept in Java?",
+            "question": "20.Which of the following is not OOPS concept in Java?",
             "web": "https://www.w3schools.blog/java-oops-online-quiz-test",
             "allChoice": {
                 "choice1": {
