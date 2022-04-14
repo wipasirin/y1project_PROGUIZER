@@ -53,13 +53,13 @@ bg_ghost = pygame.transform.scale(ghost, (WIDTH, HEIGHT))
 # ================================= QUIZ 1 =======================================
 quiz1 = pygame.image.load("projects\PyGame\pictures/background/bg2.png")
 bg_quiz1 = pygame.transform.scale(quiz1, (WIDTH, HEIGHT))
-choicebg = pygame.image.load("projects\PyGame\pictures\choiceEasy.png")
+choicebg = pygame.image.load("projects\PyGame\pictures/buttons\Asset 1.png")
 wchoicebg = choicebg.get_width()/6
 hchoice = choicebg.get_height()/6
-fontChoice = pygame.font.SysFont('cambriacambriamath', 25, BOLD)
+fontChoice = pygame.font.SysFont('cambriacambriamath', 35, BOLD)
 fontQuiz = pygame.font.SysFont('cambriacambriamath', 30, BOLD)
 WHITE = (200, 200, 200)
-GREEN = (166, 26, 0)
+colorChoice = (100, 100, 200)
 # q1_choice1 = pygame.image.load("projects/PyGame/pictures/buttons/quiz1_choice1.png")
 # q1_choice2 = pygame.image.load("projects/PyGame/pictures/buttons/quiz1_choice2.png")
 # q1_choice3 = pygame.image.load("projects/PyGame/pictures/buttons/quiz1_choice3.png")
@@ -97,6 +97,7 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))  # set a size of display
 buttonsMenuGroup = pygame.sprite.Group()
 buttonsGameGroup = pygame.sprite.Group()
 
+
 class ClassMenuButton(pygame.sprite.Sprite):  # create class button
     def __init__(self, x, y, image, width, hight, scale):
         # super().__init__()
@@ -127,8 +128,22 @@ class ClassMenuButton(pygame.sprite.Sprite):  # create class button
             self.clicked = False
         return self.clicked
 
-# def text(font, text, color):
-#     return font.render(text, 1, color)
+def blit_text(surface, text, pos, font, color=pygame.Color('black')):
+    words = [word.split(' ') for word in text.splitlines()]  # 2D array where each row is a list of words.
+    space = font.size(' ')[0]  # The width of a space.
+    max_width, max_height = surface.get_size()
+    x, y = pos
+    for line in words:
+        for word in line:
+            word_surface = font.render(word, 0, color)
+            word_width, word_height = word_surface.get_size()
+            if x + word_width >= max_width:
+                x = pos[0]  # Reset the x.
+                y += word_height  # Start on new row.
+            surface.blit(word_surface, (x, y))
+            x += word_width + space
+        x = pos[0]  # Reset the x.
+        y += word_height  # Start on new row.
 
 class Text(pygame.sprite.Sprite):  
     def __init__(self, x, y, image, width, hight, scale): 
@@ -146,12 +161,14 @@ class Text(pygame.sprite.Sprite):
 
     def drawGameBt(self, txt_choice, txt_quiz, pt_x, pt_y):
         # bt = pygame.transform.scale(choicebg, [self.rect.x, self.rect.x])
-        choicetxt = fontChoice.render(txt_choice, 1, GREEN)
-        choicequiz = fontQuiz.render(txt_quiz, 1, WHITE)
-
+        # choicetxt = fontChoice.render(txt_choice, 1, GREEN)
+        # choicequiz = fontQuiz.render(txt_quiz, 1, WHITE)
         screen.blit(self.image, [pt_x, pt_y])
-        screen.blit(choicequiz, [WIDTH/2, 50])
-        screen.blit(choicetxt, [pt_x + 20, pt_y + 45])
+        # ิblit txt
+        blit_text(screen, txt_quiz, (WIDTH/2, 50), fontQuiz, WHITE)
+        blit_text(screen, txt_choice, (pt_x + 50, pt_y + 25), fontChoice, colorChoice)
+        # screen.blit(choicequiz, [WIDTH/2, 50])
+        # screen.blit(choicetxt, [pt_x + 20, pt_y + 45])
         # self.rect = [self.rect.x - wchoicebg, self.rect.y - hchoice]
 
     def updateGameBt(self):
@@ -287,8 +304,7 @@ def threeHeart():
     screen.blit(heart3.heart0, heart3.rectht)
 
 
-def twoHeart():
-        
+def twoHeart():    
     heart1 = ClassHeart(50, 45, 0.5)
     heart2 = ClassHeart(100, 45, 0.5)
     screen.blit(heart1.heart0, heart1.rectht)
@@ -318,23 +334,18 @@ def func_menu():
     buttonsMenuGroup.draw(screen)  # draw group buttons
 
 
-# for i in data['question']:
-#     print(data['question'][i].get('question'))
-# Closing file
-
-# nextQuestion = 1
-
 def quiz():
-    pt_x = 50
-    pt_y = 600
-    checkQuestion = 1
+    pt_x = 20
+    pt_y = 583
+    countToChange_pt_y = 0
+    checkNextQuestion = 1
     # position = (100, 580)
     for i in data['allThing']:
         # print(i)
-        if (nextQuestion == checkQuestion) : 
+        if (nextQuestion == checkNextQuestion) : 
             for y in data['allThing'][i]['allChoice'] :
                 # print(y)
-                choiceButton = Text(pt_x, pt_y, choicebg, choicebg.get_width(), choicebg.get_height(), 1.2)
+                choiceButton = Text(pt_x, pt_y, choicebg, choicebg.get_width(), choicebg.get_height(), 1)
                 # read line ****
                 txt_quiz = data['allThing'][i].get('question')
                 txt_choice = data['allThing'][i]['allChoice'][y].get('choice')
@@ -342,11 +353,18 @@ def quiz():
                 choiceButton.drawGameBt(txt_choice, txt_quiz, pt_x, pt_y)
                 choiceButList.append(choiceButton)
                 checkChoiceButList.append(txt_check)
-                pt_x += 300
-            checkQuestion += 1
+                if (countToChange_pt_y >= 1):
+                    pt_x = 20
+                    pt_y += 85
+                    countToChange_pt_y = 0
+                else: 
+                    pt_x += 615
+                    countToChange_pt_y = 1
+
+            checkNextQuestion += 1
             # break
         else :
-            checkQuestion += 1 
+            checkNextQuestion += 1 
             # break
         
         # a_data.setdefault(i)
