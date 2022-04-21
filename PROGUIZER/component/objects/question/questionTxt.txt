@@ -230,11 +230,11 @@
                 },
                 "choice2": {
                     "choice": "1 11",
-                    "check": "True"
+                    "check": "False"
                 },
                 "choice3": {
                     "choice": "3 11",
-                    "check": "False"
+                    "check": "True"
                 },
                 "choice4": {
                     "choice": "none of above",
