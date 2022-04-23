@@ -115,9 +115,11 @@ class pictureForPGZ:
     bt_start = pygame.image.load("component/buttons\start.png")
     bt_exit = pygame.image.load("component/buttons\exit.png")
     bt_next = pygame.image.load("component/buttons/next.png")
-    bt_home = pygame.image.load("component\objects\objs\home.png")
-
-    ghost = pygame.image.load("component/background\special.png")
+    bt_home = pygame.image.load("component/buttons\menu.png")
+    bt_web = pygame.image.load("component/buttons\link.png")
+    h_answer = pygame.image.load("component/background/answer.png")
+    
+    ghost = pygame.image.load("component/background\ghost.png")
     bg_ghost = pygame.transform.scale(ghost, (WIDTH, HEIGHT))
 
     logo = pygame.image.load("component/objects\objs\logo.png")

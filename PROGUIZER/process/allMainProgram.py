@@ -15,7 +15,7 @@ HEIGHT = 750
 def init_values():
     global animation_cha, animation_chafight, animation_chahurt, nowHt
     global nextQuestion, a_data, choiceButList, checkChoiceButList, score, getdamage
-    global character, checkCharacter, characterNow, goToShowKey
+    global character, checkCharacter, characterNow, goToAnswer
     global txt_web, txt_answer, choiceList
 
     nowHt = 3
@@ -29,7 +29,9 @@ def init_values():
     character = 0
     checkCharacter = 0
     characterNow = 1
-    goToShowKey = 0
+    goToAnswer = 0
+    
+    
 
 # ================================ [ START ] =====================================
 pygame.display.set_caption("PROGUIZER")  # set head
@@ -269,17 +271,50 @@ def changeMonster():
     if (nextQuestion < (len(fileOpened.data['allThing'])+1)):
         init_Monster(image_mon, x, y, scale)
 
+
+# ================================== OST ==========================================
+def ost(pt):
+    # pygame.mixer.music.load('component\objects\music\start.mp3')
+    pygame.mixer.music.set_volume(0.25)
+    if (pt == 0): # end
+        pygame.mixer.music.load('component\objects\music\jumpScare.mp3')
+        pygame.mixer.music.play() 
+    elif (pt == 1): # start
+        pygame.mixer.music.load('component\objects\music\start.mp3')
+        pygame.mixer.music.play()
+    elif (pt == 2): # score
+        pygame.mixer.music.load('component\objects\music\score.mp3')
+        pygame.mixer.music.play()
+    else :
+        if(nextQuestion == 1):
+            pygame.mixer.music.load('component\objects\music\lv1.mp3')
+            pygame.mixer.music.play()
+        elif(nextQuestion == 8):
+            # pygame.mixer.music.pause()
+            # pygame.mixer.music.stop()
+            pygame.mixer.music.load('component\objects\music\lv2.mp3')
+            pygame.mixer.music.play()
+            # channel.play(sound)
+        elif(nextQuestion == 15):
+            pygame.mixer.music.load('component\objects\music\lv3.mp3')
+            pygame.mixer.music.play()
+        elif(nextQuestion == 20):
+            pygame.mixer.music.load('component\objects\music\lastBoss.mp3')
+            pygame.mixer.music.play()
+    
+
 # ================================== END ==========================================
 def gameEnd():
     running = True
-    homeButton = ClassButton((WIDTH/2 - 280), 640, pictureOpened.bt_start, pictureOpened.bt_start.get_width(), pictureOpened.bt_start.get_height(), 0.75)
+    homeButton = ClassButton((WIDTH/2 - 280), 640, pictureOpened.bt_home, pictureOpened.bt_home.get_width(), pictureOpened.bt_home.get_height(), 0.75)
     closeButton = ClassButton((WIDTH/2 - 10), 640, pictureOpened.bt_exit, pictureOpened.bt_exit.get_width(), pictureOpened.bt_exit.get_height(), 0.75)
+    ost(0)
     while running:
         screen.blit(pictureOpened.bg_ghost, (0, 0))
         buttonsGroup.draw(screen)
         for event in pygame.event.get():
             if event == pygame.QUIT:
-                pygame.exit()
+                pygame.quit()
                 sys.exit()    
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if(homeButton.checkClick()):
@@ -288,18 +323,20 @@ def gameEnd():
                         i.update()
                     main_menu()
                 elif(closeButton.checkClick()):
-                    pygame.exit()
+                    pygame.quit()
                     sys.exit() 
         pygame.display.update()
+    # showScore()
         
 # ================================= ANSWER ========================================
 def showAnswer():
-    global goToShowKey, score, nextQuestion, getdamage, nowHt, nextButton, keyButton, txt_web, txt_answer
+    global goToAnswer, score, nextQuestion, getdamage, nowHt, nextButton, keyButton, txt_web, txt_answer
     running = True
     # txt_answer = ""
-    if goToShowKey == 0: # False answer
+    if goToAnswer == 0: # False answer
+        answerHead = ClassButton(WIDTH/2 - 200, 25, pictureOpened.h_answer, pictureOpened.h_answer.get_width(), pictureOpened.h_answer.get_height(), 0.70)
         nextButton = ClassButton(925, 655, pictureOpened.bt_next, pictureOpened.bt_next.get_width(), pictureOpened.bt_next.get_height(), 0.70)
-        keyButton = ClassButton(500, 325, pictureOpened.bt_d, pictureOpened.bt_d.get_width(), pictureOpened.bt_d.get_height(), 1)
+        keyButton = ClassButton(WIDTH/2 - 360, 645, pictureOpened.bt_web, pictureOpened.bt_web.get_width(), pictureOpened.bt_web.get_height(), 0.60)
         txt_answer = ""
         for i in range(0, len(choiceButList)):
             if (checkChoiceButList[i] == "True"):
@@ -307,8 +344,8 @@ def showAnswer():
         text_answer = pictureOpened.font_answer.render("The answer is : " + txt_answer, TRUE, (255, 255, 255))
         while running:
             screen.blit(pictureOpened.bg_menu, (0, 0))
-            buttonsGroup.draw(screen)
             screen.blit(text_answer, (WIDTH/2 - 550, 350))
+            buttonsGroup.draw(screen)
             # keyButton.draw()
             for event in pygame.event.get():
                 if (event ==  pygame.QUIT):
@@ -327,7 +364,7 @@ def showAnswer():
                     elif(keyButton.checkClick()):
                         webbrowser.open(txt_web)
             pygame.display.update()
-    elif goToShowKey == 1:
+    elif goToAnswer == 1:
         nextQuestion += 1
         score += 1
 
@@ -337,8 +374,8 @@ def showScore():
     scoreButton = ClassButton(300, 40, pictureOpened.scoreBg, pictureOpened.scoreBg.get_width(), pictureOpened.scoreBg.get_height(), 0.60)
     homeButton = ClassButton((WIDTH/2 - 280), 640, pictureOpened.bt_start, pictureOpened.bt_start.get_width(), pictureOpened.bt_start.get_height(), 0.75)
     closeButton = ClassButton((WIDTH/2 - 10), 640, pictureOpened.bt_exit, pictureOpened.bt_exit.get_width(), pictureOpened.bt_exit.get_height(), 0.75)
+    ost(2)
     running = True
-
     while running:
         screen.blit(pictureOpened.bg_menu, (0, 0))
         text_score = pictureOpened.font_score.render(str(score), 1, (255, 255, 255))
@@ -546,9 +583,9 @@ def monster_animation():
 def main_Animation():
     global getdamage
     running = True    
-    init_Character()
-    # init_monster()      
+    init_Character()     
     changeMonster()
+    ost(3)
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -602,6 +639,7 @@ def main_menu():
     running = True
     init_values()
     func_menu()
+    ost(1)
     while running:
         for event in pygame.event.get():  # check circumstance in the game
             if (event.type == pygame.QUIT):  # when press botton an exit
@@ -612,15 +650,13 @@ def main_menu():
                     for i in buttonsGroup:
                         i.kill()
                         i.update()
-                    # button_start.update()
-                    # button_exit.update()
-                    # for i in buttonsGroup:
-                    #     i.kill()
                     print("Start")
                     print("now is",nextQuestion)
                     fileOpened.cutscene1.preview(fps=30) # cutscene1
                     nextQuestion += 1
                     nowHt = 3
+                    ost(3)
+                    # pygame.mixer.music.play()
                     main_Character()
                     main_Animation() # animetion
                 elif(button_exit.checkClick()):
@@ -650,51 +686,46 @@ def main_menu():
 
 # ============================== CHECK ANSWER ====================================
 def checkChoice():
-    global nextQuestion, nowHt, score, getdamage, goToShowKey
+    global nextQuestion, nowHt, score, getdamage, goToAnswer
     print(choiceButList)
     print(checkChoiceButList)
     if (choiceButList[0].checkClickgm()):
         if (checkChoiceButList[0] == "True"):
             print("clicked TRUE")
-            goToShowKey = 1
+            goToAnswer = 1
             showAnswer()
-            
         else:
             print("clicked FALSE")
-            goToShowKey = 0
+            goToAnswer = 0
             showAnswer()
-            
     elif (choiceButList[1].checkClickgm()):
         if (checkChoiceButList[1] == "True"):
             print("clicked TRUE")
-            goToShowKey = 1
+            goToAnswer = 1
             showAnswer()
-            
         else:
             print("clicked FALSE")
-            goToShowKey = 0
+            goToAnswer = 0
             showAnswer()
     elif (choiceButList[2].checkClickgm()):
         if (checkChoiceButList[2] == "True"):
             print("clicked TRUE")
-            goToShowKey = 1
-            
+            goToAnswer = 1
             showAnswer()
         else:
             print("clicked FALSE")
-            goToShowKey = 0
+            goToAnswer = 0
             showAnswer()
     elif (choiceButList[3].checkClickgm()):
         if (checkChoiceButList[3] == "True"):
             print("clicked TRUE")
-            goToShowKey = 1
-            
+            goToAnswer = 1
             showAnswer()
         else:
             print("clicked FALSE")
-            goToShowKey = 0
+            goToAnswer = 0
             showAnswer()
-   
+               
     for i in range(0, len(choiceButList)):
         choiceButList[i].updateGameBt()
     choiceButList.clear()
