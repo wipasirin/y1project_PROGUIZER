@@ -18,16 +18,15 @@ def init_values():
     global character, checkCharacter, characterNow, goToAnswer
     global txt_web, txt_answer, choiceList
 
-    nowHt = 3
+    nowHt = 3 # noe heart
     nextQuestion = 0 # now where am I 
-    a_data = {}
-    choiceButList = []
-    choiceList = []
-    checkChoiceButList = []
-    score = 0
-    getdamage = False
+    choiceButList = [] # list for botton's choice
+    choiceList = [] # list for choice
+    checkChoiceButList = [] # list for check (true/false) button's choice
+    score = 0 # count a score
+    getdamage = False # check damage
     character = 0
-    checkCharacter = 0
+    checkCharacter = 0 
     characterNow = 1
     goToAnswer = 0
     
@@ -44,7 +43,7 @@ buttonsGameGroup = pygame.sprite.Group()
 class ClassButton(pygame.sprite.Sprite):  # create class button
     def __init__(self, x, y, image, width, hight, scale):
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.transform.scale(image, (int(width * scale), int(hight * scale)))  # rescale of button
+        self.image = pygame.transform.scale(image, (int(width * scale), int(hight * scale)))  # rescale button
         self.rect = self.image.get_rect()  # surface that suitable of object
         self.rect.topleft = (x, y)
         self.clicked = False
@@ -53,14 +52,14 @@ class ClassButton(pygame.sprite.Sprite):  # create class button
     def update(self):  # kill object
         del self
 
-    def draw(self):
+    def draw(self): # draw object
         screen.blit(self.image, [self.rect.x, self.rect.y])
 
-    def checkClick(self):
+    def checkClick(self): # check clicked object
         print("I'm checking")
         pos = pygame.mouse.get_pos()
         if(hasattr(self, 'rect')):
-            if(self.rect.collidepoint(pos)):  # test if a point is inside a rectangle(button)
+            if(self.rect.collidepoint(pos)):  # if a point is inside a rectangle(button)
                 print("in rect", self)
                 if (pygame.mouse.get_pressed()[0] and (self.clicked == False)): # clicked left mouse key (left[0], middle[1], right[2])
                     self.clicked = True
@@ -70,7 +69,7 @@ class ClassButton(pygame.sprite.Sprite):  # create class button
             self.clicked = False
         return self.clicked
 
-def blit_text(surface, text, pos, font, color=pygame.Color('black')):
+def blit_text(surface, text, pos, font, color=pygame.Color('black')): # new line text
     words = [word.split(' ') for word in text.splitlines()]  # 2D array where each row is a list of words.
     space = font.size(' ')[0]  # The width of a space.
     max_width, max_height = surface.get_size()
@@ -87,7 +86,7 @@ def blit_text(surface, text, pos, font, color=pygame.Color('black')):
         x = pos[0]  # Reset the x.
         y += word_height  # Start on new row.
 
-class Text(pygame.sprite.Sprite):  
+class Text(pygame.sprite.Sprite): # class write text and draw button's choice
     def __init__(self, x, y, image, width, hight, scale): 
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.transform.scale(pictureOpened.bg_choice, (int(width * scale), int(hight * scale)))  # rescale of button      
@@ -96,22 +95,21 @@ class Text(pygame.sprite.Sprite):
         self.clicked = False
         buttonsGameGroup.add(self)
 
-    def drawGameBt(self, txt_choice, txt_quiz, pt_x, pt_y):
+    def drawGameBt(self, txt_choice, txt_quiz, pt_x, pt_y): 
         screen.blit(self.image, [pt_x, pt_y])
         # ิblit txt
         blit_text(screen, txt_quiz, (WIDTH/2 - 250, 50), pictureOpened.font_quiz, pictureOpened.color_fQuiz)
         blit_text(screen, txt_choice, (pt_x + 50, pt_y + 25), pictureOpened.font_choice, pictureOpened.color_fChoice)
 
-    def updateGameBt(self):
+    def updateGameBt(self): # kill object
         del self
 
-    def checkClickgm(self):
+    def checkClickgm(self): # check clicked
         print("I'm checking")
         pos = pygame.mouse.get_pos()
         if(hasattr(self, 'rect')):
-            if(self.rect.collidepoint(pos)):  # test if a point is inside a rectangle(button)
+            if(self.rect.collidepoint(pos)):
                 print("in rect", self)
-                # clicked left mouse key (left[0], middle[1], right[2])
                 if (pygame.mouse.get_pressed()[0] and (self.clicked == False)):
                     self.clicked = True
                 elif(pygame.mouse.get_pressed()[0] and (self.clicked == True)):
@@ -120,20 +118,19 @@ class Text(pygame.sprite.Sprite):
             self.clicked = False
         return self.clicked
 
-
 # ================================  MONSTER  =====================================
-class MainMonster(pygame.sprite.Sprite):
+class MainMonster(pygame.sprite.Sprite): # class create monster
     def __init__(self, x, y, image, width, hight, scale):
         super().__init__()
         self.image = pygame.transform.scale(image, (int(width * scale), int(hight * scale)))
         self.rect = self.image.get_rect()
         self.rect.topleft = [x,y]
 
-class AniMonster_die(pygame.sprite.Sprite):
+class AniMonster_die(pygame.sprite.Sprite): # class animation of monster
     def __init__(self, x, y, scale):
         super().__init__()
         self.imgMon =[]
-        self.animation_monDie =[]
+        self.animation_monDie =[] # the list of animation
         if (nextQuestion == 2):
             self.imgMon.append(pictureOpened.q1_1)
             self.imgMon.append(pictureOpened.q1_2)
@@ -198,26 +195,26 @@ class AniMonster_die(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.topleft = [x,y]
     
-    def death(self):
+    def death(self): # call to play an animation
         self.death_animation = True
 
-    def update(self, speed): # speed ต้องบวกได้จำนวนเต็ม 0++
+    def update(self, speed): # movement of animation
         if self.death_animation == True:
             self.current_imgChar += speed
-            if int(self.current_imgChar) >= len(self.animation_monDie):
+            if int(self.current_imgChar) >= len(self.animation_monDie): # stop animation
                 self.current_imgChar = 1
                 self.checkAni = True
                 print("enough")
         
         self.image = self.animation_monDie[int(self.current_imgChar)]
 
-def init_Monster(image_mon, x, y, scale):
+def init_Monster(image_mon, x, y, scale): 
     global monster_group, monster
     monster_group = pygame.sprite.Group()
     monster = MainMonster(x, y, image_mon, image_mon.get_width(), image_mon.get_height(), scale)
     monster_group.add(monster)
 
-def changeMonster():
+def changeMonster(): # change the moster for each question
     if(nextQuestion <= 1):
         image_mon = pictureOpened.q1_monster
         x, y, scale = 750, 280, 0.70
@@ -273,8 +270,7 @@ def changeMonster():
 
 
 # ================================== OST ==========================================
-def ost(pt):
-    # pygame.mixer.music.load('component\objects\music\start.mp3')
+def ost(pt): # change sound game
     pygame.mixer.music.set_volume(0.25)
     if (pt == 0): # end
         pygame.mixer.music.load('component\objects\music\jumpScare.mp3')
@@ -290,11 +286,8 @@ def ost(pt):
             pygame.mixer.music.load('component\objects\music\lv1.mp3')
             pygame.mixer.music.play()
         elif(nextQuestion == 8):
-            # pygame.mixer.music.pause()
-            # pygame.mixer.music.stop()
             pygame.mixer.music.load('component\objects\music\lv2.mp3')
             pygame.mixer.music.play()
-            # channel.play(sound)
         elif(nextQuestion == 15):
             pygame.mixer.music.load('component\objects\music\lv3.mp3')
             pygame.mixer.music.play()
@@ -302,9 +295,8 @@ def ost(pt):
             pygame.mixer.music.load('component\objects\music\lastBoss.mp3')
             pygame.mixer.music.play()
     
-
 # ================================== END ==========================================
-def gameEnd():
+def gameEnd(): # called when the heart = 0
     running = True
     homeButton = ClassButton((WIDTH/2 - 280), 640, pictureOpened.bt_home, pictureOpened.bt_home.get_width(), pictureOpened.bt_home.get_height(), 0.75)
     closeButton = ClassButton((WIDTH/2 - 10), 640, pictureOpened.bt_exit, pictureOpened.bt_exit.get_width(), pictureOpened.bt_exit.get_height(), 0.75)
@@ -326,10 +318,9 @@ def gameEnd():
                     pygame.quit()
                     sys.exit() 
         pygame.display.update()
-    # showScore()
-        
+         
 # ================================= ANSWER ========================================
-def showAnswer():
+def showAnswer(): # show answer when the answer is wrong
     global goToAnswer, score, nextQuestion, getdamage, nowHt, nextButton, keyButton, txt_web, txt_answer
     running = True
     # txt_answer = ""
@@ -346,7 +337,6 @@ def showAnswer():
             screen.blit(pictureOpened.bg_menu, (0, 0))
             screen.blit(text_answer, (WIDTH/2 - 550, 350))
             buttonsGroup.draw(screen)
-            # keyButton.draw()
             for event in pygame.event.get():
                 if (event ==  pygame.QUIT):
                     pygame.quit()
@@ -359,7 +349,6 @@ def showAnswer():
                         for i in buttonsGroup:
                             i.kill()
                             i.update()
-                        # nextButton.update()
                         running = False
                     elif(keyButton.checkClick()):
                         webbrowser.open(txt_web)
@@ -369,12 +358,15 @@ def showAnswer():
         score += 1
 
 # =============================== SHOW SCORE ======================================
-def showScore():
+def showScore(): # show score when done question
     global scoreButton, homeButton
-    scoreButton = ClassButton(300, 40, pictureOpened.scoreBg, pictureOpened.scoreBg.get_width(), pictureOpened.scoreBg.get_height(), 0.60)
-    homeButton = ClassButton((WIDTH/2 - 280), 640, pictureOpened.bt_start, pictureOpened.bt_start.get_width(), pictureOpened.bt_start.get_height(), 0.75)
-    closeButton = ClassButton((WIDTH/2 - 10), 640, pictureOpened.bt_exit, pictureOpened.bt_exit.get_width(), pictureOpened.bt_exit.get_height(), 0.75)
-    ost(2)
+    if (nowHt == 0):
+        gameEnd()
+    else:
+        scoreButton = ClassButton(300, 40, pictureOpened.scoreBg, pictureOpened.scoreBg.get_width(), pictureOpened.scoreBg.get_height(), 0.60)
+        homeButton = ClassButton((WIDTH/2 - 280), 640, pictureOpened.bt_home, pictureOpened.bt_home.get_width(), pictureOpened.bt_home.get_height(), 0.75)
+        closeButton = ClassButton((WIDTH/2 - 10), 640, pictureOpened.bt_exit, pictureOpened.bt_exit.get_width(), pictureOpened.bt_exit.get_height(), 0.75)
+        ost(2)
     running = True
     while running:
         screen.blit(pictureOpened.bg_menu, (0, 0))
@@ -390,9 +382,6 @@ def showScore():
                 pygame.exit()
                 sys.exit()
 
-            if (nowHt == 0):
-                gameEnd()
-
             if (homeButton.checkClick()):
                 for i in buttonsGroup:
                     i.kill()
@@ -402,11 +391,10 @@ def showScore():
             elif (closeButton.checkClick()):
                 pygame.quit()
                 sys.exit()
-
         pygame.display.update()
 
 # ===============================  CHARACTER  ====================================
-class MainCharacter(pygame.sprite.Sprite):
+class MainCharacter(pygame.sprite.Sprite): # create character
     def __init__(self, x, y):
         super().__init__()
         self.image = animation_chafight
@@ -415,7 +403,7 @@ class MainCharacter(pygame.sprite.Sprite):
     def draw(self):
         screen.blit(self.image,[self.rect.x, self.rect.y])
 
-class AnimeCharacter(pygame.sprite.Sprite):
+class AnimeCharacter(pygame.sprite.Sprite): # animation of character
     def __init__(self, x, y):
         super().__init__()
         self.imgCharCompute =[]
@@ -445,7 +433,7 @@ class AnimeCharacter(pygame.sprite.Sprite):
     def hurt(self):
         self.hurt_animation = True
 
-    def update(self, speed): # speed ต้องบวกได้จำนวนเต็ม 0++
+    def update(self, speed): 
         if self.compute_animation == True:
             self.current_imgCharCompute += speed
             if int(self.current_imgCharCompute) >= len(self.imgCharCompute):
@@ -467,7 +455,7 @@ def init_Character():
     timmieAni = AnimeCharacter(270, 270)
     timmie_group.add(timmieAni)
 
-def changeCharacter():
+def changeCharacter(): 
     global checkCharacter, characterNow
     if checkCharacter % 2 == 0:
         characterNow = 1
@@ -478,7 +466,7 @@ def changeCharacter():
         screen.blit(pictureOpened.ani_ohmmy, ((WIDTH/2 - 40), 250))
         screen.blit(pictureOpened.name_ohmmy, ((WIDTH/4 + 183), 400))
 
-def main_Character():
+def main_Character(): # when choose main character
     global animation_cha, animation_chafight, animation_chahurt
     if(character == 0):
         animation_cha = pictureOpened.ani_timmy
@@ -490,7 +478,7 @@ def main_Character():
         animation_chahurt = pictureOpened.ani_ohmmyhurt
 
 # =================================  HEART  ======================================
-class Heart(pygame.sprite.Sprite):
+class Heart(pygame.sprite.Sprite): # create heart
     def __init__(self, x, y, scale):
         pygame.sprite.Sprite.__init__(self)
         self.heart = pictureOpened.heart
@@ -528,7 +516,7 @@ def checkHeart():
         gameEnd()
 
 # ===============================  ANIMATION  ====================================
-def checkBgQuiz():
+def checkBgQuiz(): # change background of question
     if(nextQuestion <= 7):
         bg_quiz = pictureOpened.bg_quizLv1
     elif(nextQuestion <= 14):
@@ -537,7 +525,7 @@ def checkBgQuiz():
         bg_quiz = pictureOpened.bg_quizLv3
     return bg_quiz
 
-def init_Animonster():
+def init_Animonster(): 
     global killMon, animation_monDie
     animation_monDie = pygame.sprite.Group()
     if (nextQuestion == 2):
@@ -623,7 +611,7 @@ def main_Animation():
         clock.tick(15)
 
 # =================================  MENU  =======================================
-def func_menu():
+def func_menu(): # create everyting in menu page
     global button_start, button_exit
     screen.blit(pictureOpened.bg_menu, (0, 0))  # used bg
     # screen.blit(logo, ((WIDTH/2 - 500), 10))
@@ -634,7 +622,7 @@ def func_menu():
     button_exit = ClassButton((WIDTH/2 + 30), 600, pictureOpened.bt_exit, pictureOpened.bt_exit.get_width(), pictureOpened.bt_exit.get_height(), 0.75)
     buttonsGroup.draw(screen)  # draw group buttons
 
-def main_menu():
+def main_menu(): # called menu page
     global nextQuestion, nowHt,checkCharacter, character
     running = True
     init_values()
@@ -656,14 +644,13 @@ def main_menu():
                     nextQuestion += 1
                     nowHt = 3
                     ost(3)
-                    # pygame.mixer.music.play()
-                    main_Character()
-                    main_Animation() # animetion
+                    main_Character() # choose character
+                    main_Animation() # animation and quiz
                 elif(button_exit.checkClick()):
                     print("Exit")
                     pygame.quit()
                     sys.exit()
-            if (event.type == pygame.KEYDOWN):
+            if (event.type == pygame.KEYDOWN): # check key for change main character
                 screen.blit(pictureOpened.instead_menu,(WIDTH/3 + 59, HEIGHT/2 - 145))
                 if (event.key == pygame.K_LEFT or event.key == ord("a")):
                     #change color
@@ -737,7 +724,7 @@ def checkChoice():
 # ================================= QUIZ =======================================
 def quiz():
     global txt_web, txt_quiz, txt_choice, txt_choice, choiceList
-    pt_x = 20
+    pt_x = 10
     pt_y = 583
     countToChange_pt_y = 0
     checkNextQuestion = 1
@@ -755,11 +742,11 @@ def quiz():
                 choiceList.append(txt_choice)
                 checkChoiceButList.append(txt_check)
                 if (countToChange_pt_y >= 1):
-                    pt_x = 20
+                    pt_x = 10
                     pt_y += 85
                     countToChange_pt_y = 0
                 else: 
-                    pt_x += 615
+                    pt_x += 605
                     countToChange_pt_y = 1
             checkNextQuestion += 1
         else :
